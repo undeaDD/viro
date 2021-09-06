@@ -200,6 +200,7 @@ public class ARSceneModule extends ReactContextBaseJavaModule {
                 }
 
                 VRTARScene arScene = (VRTARScene) sceneView;
+
                 float[] empty_float = new float[]{0,0,0};
                 ARAnchor anchor = new ARAnchor(anchorId, null, type, empty_float, empty_float, empty_float);
                 arScene.hostCloudAnchor(anchor, promise);

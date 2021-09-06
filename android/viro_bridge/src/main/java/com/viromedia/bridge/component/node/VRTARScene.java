@@ -38,8 +38,6 @@ import com.viro.core.internal.ARDeclarativeNode;
 
 import com.viro.core.ARNode;
 import com.viro.core.ARScene;
-import com.viro.core.ARScene.CloudAnchorHostListener;
-import com.viro.core.ARScene.CloudAnchorResolveListener;
 import com.viro.core.internal.Image;
 import com.viro.core.Scene;
 import com.viro.core.EventDelegate;
@@ -200,14 +198,13 @@ public class VRTARScene extends VRTScene implements ARScene.Listener {
     }
 
     public void hostCloudAnchor(ARAnchor anchor, final Promise promise){
-        ((ARScene) mNativeScene).hostCloudAnchor(anchor, new CloudAnchorHostListener(){
+        ((ARScene) mNativeScene).hostCloudAnchor(anchor, new ARScene.CloudAnchorHostListener(){
 
             @Override
             public void onSuccess(ARAnchor arAnchor, ARNode arNode) {
                 WritableMap returnMap = Arguments.createMap();
-                returnMap.putBoolean("success", true);
                 returnMap.putMap("anchor", ARUtils.mapFromARAnchor(arAnchor));
-                Log.e("Cloud Anchor", arAnchor.getCloudAnchorId());
+                Log.e("Cloud Anchor", "success hosting");
                 promise.resolve(returnMap);
             }
 
@@ -220,14 +217,13 @@ public class VRTARScene extends VRTScene implements ARScene.Listener {
     }
 
     public void resolveCloudAnchor(String cloudAnchorId, final Promise promise){
-        ((ARScene) mNativeScene).resolveCloudAnchor(cloudAnchorId, new CloudAnchorResolveListener(){
+        ((ARScene) mNativeScene).resolveCloudAnchor(cloudAnchorId, new ARScene.CloudAnchorResolveListener(){
 
             @Override
             public void onSuccess(ARAnchor arAnchor, ARNode arNode) {
                 WritableMap returnMap = Arguments.createMap();
-                returnMap.putBoolean("success", true);
                 returnMap.putMap("anchor", ARUtils.mapFromARAnchor(arAnchor));
-                Log.e("Resolve Cloud Anchor", arAnchor.getCloudAnchorId());
+                Log.e("Resolve Cloud Anchor", "resolve success");
                 promise.resolve(returnMap);
             }
 
