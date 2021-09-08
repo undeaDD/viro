@@ -50,8 +50,8 @@ RCT_EXPORT_METHOD(preloadSounds:(NSDictionary *)soundDict
         }
         std::string cKeyString = std::string([((NSString *) key) UTF8String]);
         std::string cPathString = std::string([((NSString *) path) UTF8String]);
-       // std::shared_ptr<VROSoundDataGVR> data = VROSoundDataGVR::create(cPathString, VROResourceType::URL);
-       // _preloadedSounds[cKeyString] = data;
+        std::shared_ptr<VROSoundDataGVR> data = VROSoundDataGVR::create(cPathString, VROResourceType::URL);
+        _preloadedSounds[cKeyString] = data;
         
         if (resolve) {
             // Create a finish preloading callback with the promise for notifying Javascript with.
